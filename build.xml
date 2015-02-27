@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+-<project basedir="." default="default" name="FreedomOPMod">
+
+<description>Builds, tests, and runs the project FreedomOPMod.</description>
+
+<import file="nbproject/build-impl.xml"/>
+
+
+-<target name="-pre-jar">
+
+<copy file="buildcreator.default.properties" overwrite="false" tofile="buildcreator.properties"/>
+
+<property file="buildcreator.properties"/>
+
+<buildnumber file="buildnumber.properties"/>
+
+
+-<propertyfile file="appinfo.properties">
+
+<entry value="${build.number}" key="program.buildnumber"/>
+
+<entry value="now" key="program.builddate" pattern="MM/dd/yyyy hh:mm aa" type="date"/>
+
+<entry value="${program.buildcreator}" key="program.buildcreator"/>
+
+</propertyfile>
+
+<copy file="appinfo.properties" todir="${build.classes.dir}"/>
+
+<delete file="appinfo.properties"/>
+
+</target>
+
+
+-<target name="-post-jar">
+
+<!-- Cleanup -->
+
+
+<delete file="${dist.dir}/README.TXT"/>
+
+<delete dir="${dist.dir}/lib/"/>
+
+</target>
+
+</project>
